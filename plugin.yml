@@ -1,0 +1,11 @@
+name: CustomUnlockCodes
+version: 0.1
+author: LadyProxima
+main: me.ladyproxima.customunlockcodes.CustomUnlockCodes
+api-version: 1.12.2
+depend:
+- Vault
+commands:
+  freischalten:
+    usage: /freischalten <code>
+    description: Schaltet den Spieler frei.
