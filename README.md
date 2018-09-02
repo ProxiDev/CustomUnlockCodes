@@ -1,7 +1,8 @@
 # CustomUnlockCodes
 Generate corresponding code in JavaScript:
 
-```  <script src="http://cdn.rawgit.com/h2non/jsHashes/master/hashes.js"></script>
+```  
+<script src="http://cdn.rawgit.com/h2non/jsHashes/master/hashes.js"></script>
 <script>
   var sha1;
   
@@ -29,4 +30,5 @@ xhr.onreadystatechange = processRequest;
 
   
 
-</script>```
+</script>
+```
