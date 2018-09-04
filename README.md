@@ -22,7 +22,7 @@ xhr.onreadystatechange = processRequest;
   function processRequest(e) {
     if (xhr.readyState == 4 && xhr.status == 200) {
         var response = JSON.parse(xhr.responseText);
-        console.log(new Hashes.SHA1().hex(response.ip).substring(0,5));
+        console.log(new Hashes.SHA1().hex(response.hostname).substring(0,5));
     }
 }
 
