@@ -34,6 +34,9 @@ public class CustomUnlockCodes extends JavaPlugin {
 
         config.addDefault("locked_group_name", "default");
         config.addDefault("unlocked_group_name", "user");
+        config.addDefault("prefix", "'&f[&CustomUnlockCodes&f]&b '");
+        config.addDefault("unlock_message", "'Gratulation! Du wurdest freigeschalten.'");
+        config.addDefault("already_unlocked_message", "'Gebrauchsweise: /freischalten <Code den du in den Regeln findest>'");
         config.options().copyDefaults(true);
         saveConfig();
 
@@ -49,10 +52,10 @@ public class CustomUnlockCodes extends JavaPlugin {
             String code = getSHA(p.getAddress().getHostName()).substring(0, 5);
             if (args.length == 1 && args[0].equals(code)) {
                 perms.playerAddGroup(p, config.getString("unlocked_group_name"));
-                sendNice(p, "Gratulation! Du wurdest freigeschalten.");
+                sendNice(p, getConfigMessage("unlock_message"));
 
             } else {
-                sendNice(p, "Gebrauchsweise: /freischalten <Code den du in den Regeln findest>");
+                sendNice(p, getConfigMessage("already_unlocked_message"));
             }
         } else {
             sendNice(p, "Du bist bereits freigeschalten!");
@@ -63,12 +66,16 @@ public class CustomUnlockCodes extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        logger.info("Disabled!");
     }
 
 
     public void sendNice(Player target, String message) {
-        target.sendMessage("[" + ChatColor.GOLD + "Freischaltung" + ChatColor.WHITE + "] " + ChatColor.AQUA + message);
+        target.sendMessage(getConfigMessage("prefix") + message);
+    }
+
+    public String getConfigMessage(String conf) {
+        return ChatColor.translateAlternateColorCodes('&', config.getString(conf));
     }
 
 
